@@ -1,4 +1,4 @@
-package com.customer.customer.repo.loginHistory;
+package com.ecommerce.customer.repo.loginHistory;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

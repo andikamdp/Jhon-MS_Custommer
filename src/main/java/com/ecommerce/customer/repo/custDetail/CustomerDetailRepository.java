@@ -1,4 +1,4 @@
-package com.customer.customer.repo.custDetail;
+package com.ecommerce.customer.repo.custDetail;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

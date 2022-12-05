@@ -1,8 +1,8 @@
-package com.customer.customer.services;
+package com.ecommerce.customer.services;
 
-import com.customer.customer.dto.RegisterCustomerRequest;
-import com.customer.customer.dto.ChangePasswordRequest;
-import com.customer.customer.dto.ValidateCustomerRequest;
+import com.ecommerce.customer.dto.RegisterCustomerRequest;
+import com.ecommerce.customer.dto.ChangePasswordRequest;
+import com.ecommerce.customer.dto.ValidateCustomerRequest;
 
 public interface CustomerActivity {
     void registerCustomer(RegisterCustomerRequest registerCustomer);

@@ -1,8 +1,7 @@
-package com.customer.customer.repo.custAccount;
+package com.ecommerce.customer.repo.custAccount;
 
 import org.springframework.context.annotation.Configuration;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Configuration

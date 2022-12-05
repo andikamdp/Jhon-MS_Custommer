@@ -1,9 +1,9 @@
-package com.customer.customer.controller;
+package com.ecommerce.customer.controller;
 
-import com.customer.customer.dto.ChangePasswordRequest;
-import com.customer.customer.dto.RegisterCustomerRequest;
-import com.customer.customer.dto.ValidateCustomerRequest;
-import com.customer.customer.services.CustomerActivityService;
+import com.ecommerce.customer.dto.ChangePasswordRequest;
+import com.ecommerce.customer.dto.RegisterCustomerRequest;
+import com.ecommerce.customer.dto.ValidateCustomerRequest;
+import com.ecommerce.customer.services.CustomerActivityService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;

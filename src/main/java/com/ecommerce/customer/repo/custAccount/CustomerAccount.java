@@ -1,4 +1,4 @@
-package com.customer.customer.repo.custAccount;
+package com.ecommerce.customer.repo.custAccount;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

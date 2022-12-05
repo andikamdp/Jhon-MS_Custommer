@@ -1,15 +1,14 @@
-package com.customer.customer.services;
+package com.ecommerce.customer.services;
 
-import com.customer.customer.dto.RegisterCustomerRequest;
-import com.customer.customer.dto.ChangePasswordRequest;
-import com.customer.customer.dto.ValidateCustomerRequest;
-import com.customer.customer.repo.custAccount.CustomerAccount;
-import com.customer.customer.repo.custAccount.CustomerAccountDao;
-import com.customer.customer.repo.custDetail.CustomerDetail;
-import com.customer.customer.repo.custDetail.CustomerDetailDao;
-import com.customer.customer.repo.loginHistory.LoginHistory;
-import com.customer.customer.repo.loginHistory.LoginHistoryDao;
-import com.customer.customer.repo.loginHistory.LoginHistoryRepository;
+import com.ecommerce.customer.dto.RegisterCustomerRequest;
+import com.ecommerce.customer.dto.ChangePasswordRequest;
+import com.ecommerce.customer.dto.ValidateCustomerRequest;
+import com.ecommerce.customer.repo.custAccount.CustomerAccount;
+import com.ecommerce.customer.repo.custAccount.CustomerAccountDao;
+import com.ecommerce.customer.repo.custDetail.CustomerDetail;
+import com.ecommerce.customer.repo.custDetail.CustomerDetailDao;
+import com.ecommerce.customer.repo.loginHistory.LoginHistory;
+import com.ecommerce.customer.repo.loginHistory.LoginHistoryDao;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 

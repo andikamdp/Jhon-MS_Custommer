@@ -1,4 +1,4 @@
-package com.customer.customer.repo.custDetail;
+package com.ecommerce.customer.repo.custDetail;
 
 import org.springframework.stereotype.Component;
 

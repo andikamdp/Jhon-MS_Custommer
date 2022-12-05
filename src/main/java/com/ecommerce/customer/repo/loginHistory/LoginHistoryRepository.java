@@ -1,4 +1,4 @@
-package com.customer.customer.repo.loginHistory;
+package com.ecommerce.customer.repo.loginHistory;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

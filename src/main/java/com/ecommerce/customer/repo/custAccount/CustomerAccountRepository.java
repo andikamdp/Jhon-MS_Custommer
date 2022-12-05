@@ -1,4 +1,4 @@
-package com.customer.customer.repo.custAccount;
+package com.ecommerce.customer.repo.custAccount;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

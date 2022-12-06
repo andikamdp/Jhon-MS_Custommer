@@ -1,9 +1,7 @@
 package com.ecommerce.customer.controller;
 
-import com.ecommerce.customer.dto.ChangePasswordRequest;
-import com.ecommerce.customer.dto.RegisterCustomerRequest;
-import com.ecommerce.customer.dto.ValidateCustomerRequest;
-import com.ecommerce.customer.services.CustomerActivityService;
+import com.ecommerce.customer.dto.*;
+import com.ecommerce.customer.services.CustomerActivity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,11 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("customer")
 public class CustomerActivityController {
-    private final CustomerActivityService customerActivityService;
+    private final CustomerActivity customerActivityService;
 
-    public CustomerActivityController(CustomerActivityService customerActivityService) {
+    public CustomerActivityController(CustomerActivity customerActivityService) {
         this.customerActivityService = customerActivityService;
     }
+
 
     @PostMapping("register")
     public void register(HttpServletRequest httpRequest, @RequestBody RegisterCustomerRequest registerCustomer){
@@ -25,6 +24,11 @@ public class CustomerActivityController {
     @PostMapping("validate")
     public void validate(HttpServletRequest httpRequest, @RequestBody ValidateCustomerRequest validateCustomer){
         customerActivityService.validateCustomer(validateCustomer);
+    }
+
+    @PostMapping("validate-exist-user")
+    public ValidateExistingCustomerResponse validateExistUser(HttpServletRequest httpRequest, @RequestBody ValidateExistingCustomerRequest validateCustomer){
+       return customerActivityService.requestChangePassword(validateCustomer);
     }
 
     @PatchMapping("change-password")

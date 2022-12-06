@@ -14,7 +14,9 @@ import javax.persistence.*;
 @AllArgsConstructor
 public class CustomerAccount {
     @Id
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @Column(unique = true)
     private String username;

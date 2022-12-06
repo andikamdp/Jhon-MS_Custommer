@@ -13,15 +13,15 @@ public class CustomerDetailDao {
         this.customerDetailRepository = customerDetailRepository;
     }
 
-    public Long save(CustomerDetail data) {
-        return customerDetailRepository.save(data).getUserId();
+    public void save(CustomerDetail data) {
+        customerDetailRepository.save(data);
     }
 
-    public Optional<CustomerDetail> findById(Long id) {
-        return this.customerDetailRepository.findById(id);
+    public Optional<CustomerDetail> findByIdentityNumberAndUsername(String identityNumber, String username) {
+        return this.customerDetailRepository.findByNationalIdentityNumberAndAccountUsername(identityNumber, username);
     }
 
-    public Optional<CustomerDetail> findByIdentityNymber(String identityNumber) {
-        return this.customerDetailRepository.findByNationalIdentityNumber(identityNumber);
+    public Optional<CustomerDetail> findByIdentityNumberOrUsername(String identityNumber, String username) {
+        return this.customerDetailRepository.findByNationalIdentityNumberOrAccountUsername(identityNumber, username);
     }
 }

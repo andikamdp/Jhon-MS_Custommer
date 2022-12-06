@@ -12,12 +12,12 @@ public class CustomerAccountDao {
         this.customerAccountRepository = customerAccountRepository;
     }
 
-    public void save(CustomerAccount data) {
-        customerAccountRepository.save(data);
+    public CustomerAccount save(CustomerAccount data) {
+       return customerAccountRepository.save(data);
     }
 
-    public CustomerAccount findById(Long id) {
-        return this.customerAccountRepository.findById(id).orElseThrow();
+    public Optional<CustomerAccount> findById(Long id) {
+        return this.customerAccountRepository.findById(id);
     }
 
     public Optional<CustomerAccount> findByUsername(String username) {

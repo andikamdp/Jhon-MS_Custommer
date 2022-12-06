@@ -24,4 +24,8 @@ public class CustomerDetailDao {
     public Optional<CustomerDetail> findByIdentityNumberOrUsername(String identityNumber, String username) {
         return this.customerDetailRepository.findByNationalIdentityNumberOrAccountUsername(identityNumber, username);
     }
+
+    public Optional<CustomerDetail> findByAccount_UserId(Long userId) {
+        return this.customerDetailRepository.findByAccount_UserId(userId);
+    }
 }

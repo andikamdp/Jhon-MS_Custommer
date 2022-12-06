@@ -13,7 +13,7 @@ public class CustomerAccountDao {
     }
 
     public CustomerAccount save(CustomerAccount data) {
-       return customerAccountRepository.save(data);
+        return customerAccountRepository.save(data);
     }
 
     public Optional<CustomerAccount> findById(Long id) {

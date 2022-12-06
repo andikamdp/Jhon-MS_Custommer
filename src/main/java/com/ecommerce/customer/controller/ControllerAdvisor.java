@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.ConstraintViolationException;
 import java.util.NoSuchElementException;
 
 @RestControllerAdvice
@@ -21,7 +20,7 @@ public class ControllerAdvisor {
 
 
         log.error(
-                httpRequest.getServletPath() + " | " + " | " + ex.getMessage());
+                httpRequest.getServletPath() + " | " + httpRequest.getMethod() + " | " + ex.getMessage());
 
         return ex.getMessage();
     }
@@ -31,7 +30,7 @@ public class ControllerAdvisor {
     protected String handleMethodDataIntegrityViolationException(HttpServletRequest httpRequest, DataIntegrityViolationException ex) {
 
         log.error(
-                httpRequest.getServletPath() + " | " + " | " + ex.getMessage());
+                httpRequest.getServletPath() + " | " + httpRequest.getMethod() + " | " + ex.getMessage());
 
         return ex.getMostSpecificCause().getMessage();
     }
@@ -42,7 +41,7 @@ public class ControllerAdvisor {
 
 
         log.error(
-                httpRequest.getServletPath() + " | " + " | " + ex.getMessage());
+                httpRequest.getServletPath() + " | " + httpRequest.getMethod() + " | " + ex.getMessage());
 
         return "System unavailable";
     }

@@ -3,11 +3,9 @@ package com.ecommerce.customer.services;
 import com.ecommerce.customer.dto.*;
 
 public interface CustomerActivity {
-    void registerCustomer(RegisterCustomerRequest registerCustomer);
+    void register(RegisterCustomerRequest registerCustomer);
+    LoginResponse login(LoginRequest loginRequest);
+    void logout(LogoutRequest logoutRequest);
+    void validateSession(ValidateSessionRequest validateSessionRequest);
 
-    void validateCustomer(ValidateCustomerRequest validateCustomer);
-
-    ValidateExistingCustomerResponse requestChangePassword(ValidateExistingCustomerRequest resetPassword);
-
-    void changePassword(ChangePasswordRequest resetPassword);
 }

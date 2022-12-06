@@ -2,6 +2,7 @@ package com.ecommerce.customer.controller;
 
 import com.ecommerce.customer.dto.*;
 import com.ecommerce.customer.services.CustomerActivity;
+import com.ecommerce.customer.services.CustomerManaging;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,30 +11,55 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("customer")
 public class CustomerActivityController {
     private final CustomerActivity customerActivityService;
+    private final CustomerManaging customerManaging;
 
-    public CustomerActivityController(CustomerActivity customerActivityService) {
+    public CustomerActivityController(CustomerActivity customerActivityService, CustomerManaging customerManaging) {
         this.customerActivityService = customerActivityService;
+        this.customerManaging = customerManaging;
     }
-
 
     @PostMapping("register")
-    public void register(HttpServletRequest httpRequest, @RequestBody RegisterCustomerRequest registerCustomer){
-        customerActivityService.registerCustomer(registerCustomer);
+    public void register(HttpServletRequest httpRequest, @RequestBody RegisterCustomerRequest registerCustomer) {
+        this.customerActivityService.register(registerCustomer);
     }
 
-    @PostMapping("validate")
-    public void validate(HttpServletRequest httpRequest, @RequestBody ValidateCustomerRequest validateCustomer){
-        customerActivityService.validateCustomer(validateCustomer);
+    @PostMapping("login")
+    public LoginResponse login(HttpServletRequest httpRequest, @RequestBody LoginRequest loginRequest) {
+        return this.customerActivityService.login(loginRequest);
+    }
+
+    @DeleteMapping("logout")
+    public void logout(HttpServletRequest httpRequest
+            , @RequestHeader("user-id") String userid
+            , @RequestHeader("session-id") String sessionId) {
+        this.customerActivityService.validateSession(new ValidateSessionRequest(sessionId, Long.parseLong(userid)));
+        this.customerActivityService.logout(new LogoutRequest(Long.parseLong(userid)));
+    }
+
+    @GetMapping("session")
+    public void validateSession(HttpServletRequest httpRequest
+            , @RequestHeader("user-id") String userid
+            , @RequestHeader("session-id") String sessionId) {
+        this.customerActivityService.validateSession(new ValidateSessionRequest(sessionId, Long.parseLong(userid)));
+    }
+
+    @GetMapping
+    public DetailCustomerResponse detail(HttpServletRequest httpRequest
+            , @RequestHeader("user-id") String userid
+            , @RequestHeader("session-id") String sessionId
+            , RegisterCustomerRequest registerCustomer) {
+        this.customerActivityService.validateSession(new ValidateSessionRequest(sessionId, Long.parseLong(userid)));
+        return this.customerManaging.detailCustomer(userid);
     }
 
     @PostMapping("validate-exist-user")
-    public ValidateExistingCustomerResponse validateExistUser(HttpServletRequest httpRequest, @RequestBody ValidateExistingCustomerRequest validateCustomer){
-       return customerActivityService.requestChangePassword(validateCustomer);
+    public ValidateExistingCustomerResponse validateExistUser(HttpServletRequest httpRequest, @RequestBody ValidateExistingCustomerRequest validateCustomer) {
+        return this.customerManaging.requestChangePassword(validateCustomer);
     }
 
     @PatchMapping("change-password")
-    public void changePassword(HttpServletRequest httpRequest, @RequestBody ChangePasswordRequest changePassword){
-        customerActivityService.changePassword(changePassword);
+    public void changePassword(HttpServletRequest httpRequest, @RequestBody ChangePasswordRequest changePassword) {
+        this.customerManaging.changePassword(changePassword);
     }
 
 }

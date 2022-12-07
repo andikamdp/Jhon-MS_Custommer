@@ -9,6 +9,7 @@ import com.ecommerce.customer.repo.custAccount.CustomerAccountDao;
 import com.ecommerce.customer.repo.custDetail.CustomerDetailDao;
 import com.ecommerce.customer.repo.custDetail.CustomerDetailModel;
 import com.ecommerce.customer.repo.loginHistory.LoginHistoryDao;
+import com.ecommerce.customer.utils.CommonStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -59,5 +60,6 @@ public class CustomerManagingService implements CustomerManaging {
         this.chagePasswordDao.findById(resetPassword.getTransactionId(), resetPassword.getUserId())
                 .orElseThrow(() -> new NoSuchElementException("data Not Found"));
         customerAccountDao.updatePassword(resetPassword.getUserId(), resetPassword.getNewPassword());
+        this.chagePasswordDao.updateStatus(resetPassword.getTransactionId(), resetPassword.getUserId(), CommonStatus.USED);
     }
 }

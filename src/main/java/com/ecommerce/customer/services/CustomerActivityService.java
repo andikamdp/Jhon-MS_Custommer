@@ -10,6 +10,7 @@ import com.ecommerce.customer.repo.loginHistory.LoginHistoryModel;
 import com.ecommerce.customer.repo.session.SessionDao;
 import com.ecommerce.customer.repo.session.SessionModel;
 import com.ecommerce.customer.utils.CommonStatus;
+import com.ecommerce.customer.utils.ParameterComponent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,15 @@ public class CustomerActivityService implements CustomerActivity {
     private final CustomerDetailDao customerDetailDao;
     private final LoginHistoryDao loginHistoryDao;
     private final SessionDao sessionDao;
+    private final ParameterComponent parameterComponent;
 
 
-    public CustomerActivityService(CustomerAccountDao customerAccountDao, CustomerDetailDao customerDetailDao, LoginHistoryDao loginHistoryDao, SessionDao sessionDao) {
+    public CustomerActivityService(CustomerAccountDao customerAccountDao, CustomerDetailDao customerDetailDao, LoginHistoryDao loginHistoryDao, SessionDao sessionDao, ParameterComponent parameterComponent) {
         this.customerAccountDao = customerAccountDao;
         this.customerDetailDao = customerDetailDao;
         this.loginHistoryDao = loginHistoryDao;
         this.sessionDao = sessionDao;
+        this.parameterComponent = parameterComponent;
     }
 
 
@@ -89,7 +92,7 @@ public class CustomerActivityService implements CustomerActivity {
         Long time = session.getDate().getTime();
         Long currentTime = date.getTime();
 
-        if (currentTime - time > 300000) {
+        if (currentTime - time > parameterComponent.getSessionTimeout()) {
             throw new NoSuchElementException("invalid Session");
         } else {
             this.sessionDao.updateDate(validateSessionRequest.getUserId(), validateSessionRequest.getSession());

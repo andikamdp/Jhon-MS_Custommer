@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ChangePasswordRepository extends JpaRepository<ChangePassword, String> {
+public interface ChangePasswordRepository extends JpaRepository<ChangePasswordModel, String> {
 
-    Optional<ChangePassword> findByTransactionIdAndUserIdAndStatus(String transactionId, Long userId, String status);
+    Optional<ChangePasswordModel> findByTransactionIdAndUserIdAndStatus(String transactionId, Long userId, String status);
 }

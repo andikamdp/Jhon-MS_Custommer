@@ -10,7 +10,7 @@ public class LoginHistoryDao {
         this.loginHistoryRepository = loginHistoryRepository;
     }
 
-    public void save(LoginHistory data) {
+    public void save(LoginHistoryModel data) {
         loginHistoryRepository.save(data);
     }
 }

@@ -13,19 +13,19 @@ public class CustomerDetailDao {
         this.customerDetailRepository = customerDetailRepository;
     }
 
-    public void save(CustomerDetail data) {
+    public void save(CustomerDetailModel data) {
         customerDetailRepository.save(data);
     }
 
-    public Optional<CustomerDetail> findByIdentityNumberAndUsername(String identityNumber, String username) {
+    public Optional<CustomerDetailModel> findByIdentityNumberAndUsername(String identityNumber, String username) {
         return this.customerDetailRepository.findByNationalIdentityNumberAndAccountUsername(identityNumber, username);
     }
 
-    public Optional<CustomerDetail> findByIdentityNumberOrUsername(String identityNumber, String username) {
+    public Optional<CustomerDetailModel> findByIdentityNumberOrUsername(String identityNumber, String username) {
         return this.customerDetailRepository.findByNationalIdentityNumberOrAccountUsername(identityNumber, username);
     }
 
-    public Optional<CustomerDetail> findByAccount_UserId(Long userId) {
+    public Optional<CustomerDetailModel> findByAccount_UserId(Long userId) {
         return this.customerDetailRepository.findByAccount_UserId(userId);
     }
 }

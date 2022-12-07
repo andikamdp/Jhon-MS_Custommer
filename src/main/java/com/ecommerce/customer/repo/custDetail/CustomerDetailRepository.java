@@ -6,9 +6,10 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CustomerDetailRepository extends JpaRepository<CustomerDetail, String> {
-    Optional<CustomerDetail> findByNationalIdentityNumberAndAccountUsername(String identityNumber, String username);
+public interface CustomerDetailRepository extends JpaRepository<CustomerDetailModel, String> {
+    Optional<CustomerDetailModel> findByNationalIdentityNumberAndAccountUsername(String identityNumber, String username);
 
-    Optional<CustomerDetail> findByNationalIdentityNumberOrAccountUsername(String identityNumber, String username);
-    Optional<CustomerDetail> findByAccount_UserId(Long userId);
+    Optional<CustomerDetailModel> findByNationalIdentityNumberOrAccountUsername(String identityNumber, String username);
+
+    Optional<CustomerDetailModel> findByAccount_UserId(Long userId);
 }

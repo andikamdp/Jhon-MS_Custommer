@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class Session {
+public class SessionModel {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")

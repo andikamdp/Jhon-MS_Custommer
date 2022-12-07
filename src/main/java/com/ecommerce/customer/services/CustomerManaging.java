@@ -7,7 +7,9 @@ import com.ecommerce.customer.dto.ValidateExistingCustomerResponse;
 
 public interface CustomerManaging {
     ValidateExistingCustomerResponse requestChangePassword(ValidateExistingCustomerRequest resetPassword);
+
     void changePassword(ChangePasswordRequest resetPassword);
+
     DetailCustomerResponse detailCustomer(String userId);
 
 }

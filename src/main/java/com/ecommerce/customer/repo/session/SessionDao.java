@@ -13,8 +13,8 @@ public class SessionDao {
         this.sessionRepository = sessionRepository;
     }
 
-    public String save(Long userId){
-        Session session = new Session();
+    public String save(Long userId) {
+        SessionModel session = new SessionModel();
         session.setDate(new Date());
         session.setUserId(userId);
         session = this.sessionRepository.save(session);
@@ -22,8 +22,8 @@ public class SessionDao {
         return session.getTransactionId();
     }
 
-    public String updateDate(Long userId, String sessionId){
-        Session session = new Session();
+    public String updateDate(Long userId, String sessionId) {
+        SessionModel session = new SessionModel();
         session.setDate(new Date());
         session.setUserId(userId);
         session.setTransactionId(sessionId);
@@ -32,11 +32,11 @@ public class SessionDao {
         return session.getTransactionId();
     }
 
-    public void delete(Long userId){
+    public void delete(Long userId) {
         this.sessionRepository.deleteByUserId(userId);
     }
 
-    public Optional<Session> findById(String sessionId){
+    public Optional<SessionModel> findById(String sessionId) {
         return this.sessionRepository.findById(sessionId);
     }
 }

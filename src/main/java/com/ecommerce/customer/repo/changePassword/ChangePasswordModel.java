@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePassword {
+public class ChangePasswordModel {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -23,7 +23,7 @@ public class ChangePassword {
     private Date date;
     private String status;
 
-    public ChangePassword(Long userId, Date date, String status) {
+    public ChangePasswordModel(Long userId, Date date, String status) {
         this.userId = userId;
         this.date = date;
         this.status = status;

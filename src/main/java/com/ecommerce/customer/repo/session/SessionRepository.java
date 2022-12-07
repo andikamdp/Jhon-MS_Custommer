@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 
 @Repository
-public interface SessionRepository extends JpaRepository<Session, String> {
+public interface SessionRepository extends JpaRepository<SessionModel, String> {
     @Modifying
     @Transactional
     void deleteByUserId(Long userId);

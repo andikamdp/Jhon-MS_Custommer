@@ -1,14 +1,14 @@
 package com.ecommerce.customer.services;
 
 import com.ecommerce.customer.dto.*;
-import com.ecommerce.customer.repo.custAccount.CustomerAccount;
 import com.ecommerce.customer.repo.custAccount.CustomerAccountDao;
-import com.ecommerce.customer.repo.custDetail.CustomerDetail;
+import com.ecommerce.customer.repo.custAccount.CustomerAccountModel;
 import com.ecommerce.customer.repo.custDetail.CustomerDetailDao;
-import com.ecommerce.customer.repo.loginHistory.LoginHistory;
+import com.ecommerce.customer.repo.custDetail.CustomerDetailModel;
 import com.ecommerce.customer.repo.loginHistory.LoginHistoryDao;
-import com.ecommerce.customer.repo.session.Session;
+import com.ecommerce.customer.repo.loginHistory.LoginHistoryModel;
 import com.ecommerce.customer.repo.session.SessionDao;
+import com.ecommerce.customer.repo.session.SessionModel;
 import com.ecommerce.customer.utils.CommonStatus;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -41,13 +41,13 @@ public class CustomerActivityService implements CustomerActivity {
             throw new DataIntegrityViolationException("Duplicate data found");
         });
 
-        CustomerAccount customerAccount = CustomerAccount.builder()
+        CustomerAccountModel customerAccount = CustomerAccountModel.builder()
                 .password(registerCustomer.getPassword())
                 .username(registerCustomer.getUsername())
                 .build();
         customerAccount = this.customerAccountDao.save(customerAccount);
 
-        CustomerDetail customerDetail = CustomerDetail.builder()
+        CustomerDetailModel customerDetail = CustomerDetailModel.builder()
                 .email(registerCustomer.getMail())
                 .nationalIdentityNumber(registerCustomer.getIdentityNumber())
                 .name(registerCustomer.getName())
@@ -61,7 +61,7 @@ public class CustomerActivityService implements CustomerActivity {
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
-        CustomerAccount customerAccount = this.customerAccountDao.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()).orElseThrow(() -> {
+        CustomerAccountModel customerAccount = this.customerAccountDao.findByUsernameAndPassword(loginRequest.getUsername(), loginRequest.getPassword()).orElseThrow(() -> {
             throw new NoSuchElementException("invalid username or password");
         });
 
@@ -69,7 +69,7 @@ public class CustomerActivityService implements CustomerActivity {
 
         String sessionId = this.sessionDao.save(customerAccount.getUserId());
 
-        this.loginHistoryDao.save(new LoginHistory(customerAccount.getUserId(), new Date(), CommonStatus.SUCCESS.name()));
+        this.loginHistoryDao.save(new LoginHistoryModel(customerAccount.getUserId(), new Date(), CommonStatus.SUCCESS.name()));
 
         return new LoginResponse(sessionId, customerAccount.getUserId());
     }
@@ -81,7 +81,7 @@ public class CustomerActivityService implements CustomerActivity {
 
     @Override
     public void validateSession(ValidateSessionRequest validateSessionRequest) {
-        Session session = this.sessionDao.findById(validateSessionRequest.getSession()).orElseThrow(() -> {
+        SessionModel session = this.sessionDao.findById(validateSessionRequest.getSession()).orElseThrow(() -> {
             throw new NoSuchElementException("invalid Session");
         });
         Date date = new Date();

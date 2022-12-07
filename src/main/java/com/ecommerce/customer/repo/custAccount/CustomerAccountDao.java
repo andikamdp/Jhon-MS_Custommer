@@ -12,24 +12,24 @@ public class CustomerAccountDao {
         this.customerAccountRepository = customerAccountRepository;
     }
 
-    public CustomerAccount save(CustomerAccount data) {
+    public CustomerAccountModel save(CustomerAccountModel data) {
         return customerAccountRepository.save(data);
     }
 
-    public Optional<CustomerAccount> findById(Long id) {
+    public Optional<CustomerAccountModel> findById(Long id) {
         return this.customerAccountRepository.findById(id);
     }
 
-    public Optional<CustomerAccount> findByUsername(String username) {
+    public Optional<CustomerAccountModel> findByUsername(String username) {
         return this.customerAccountRepository.findByUsername(username);
     }
 
-    public Optional<CustomerAccount> findByUsernameAndPassword(String username, String password) {
+    public Optional<CustomerAccountModel> findByUsernameAndPassword(String username, String password) {
         return this.customerAccountRepository.findByUsernameAndPassword(username, password);
     }
 
     public void updatePassword(Long userId, String password) {
-        CustomerAccount customerAccount = this.customerAccountRepository.getReferenceById(userId);
+        CustomerAccountModel customerAccount = this.customerAccountRepository.getReferenceById(userId);
         customerAccount.setPassword(password);
 
         this.save(customerAccount);

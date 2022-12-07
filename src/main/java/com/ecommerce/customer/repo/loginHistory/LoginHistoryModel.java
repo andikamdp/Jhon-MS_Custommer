@@ -11,7 +11,7 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginHistory {
+public class LoginHistoryModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class LoginHistory {
     private Date loginDate;
     private String loginStatus;
 
-    public LoginHistory(Long customerAccountId, Date loginDate, String loginStatus) {
+    public LoginHistoryModel(Long customerAccountId, Date loginDate, String loginStatus) {
         this.customerAccountId = customerAccountId;
         this.loginDate = loginDate;
         this.loginStatus = loginStatus;

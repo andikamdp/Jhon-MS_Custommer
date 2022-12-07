@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface CustomerAccountRepository extends JpaRepository<CustomerAccount, Long> {
-    Optional<CustomerAccount> findByUsername(String username);
+public interface CustomerAccountRepository extends JpaRepository<CustomerAccountModel, Long> {
+    Optional<CustomerAccountModel> findByUsername(String username);
 
-    Optional<CustomerAccount> findByUsernameAndPassword(String username, String password);
+    Optional<CustomerAccountModel> findByUsernameAndPassword(String username, String password);
 }

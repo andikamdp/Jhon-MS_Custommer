@@ -26,7 +26,13 @@ public class ChagePasswordDao {
         this.changePasswordRepository.save(usedTransactionId);
     }
 
+    public Optional<ChangePasswordModel> findById(Long userId) {
+        return this.changePasswordRepository.findByUserIdAndStatus(userId, CommonStatus.INIT.name());
+    }
+
     public Optional<ChangePasswordModel> findById(String transactionId, Long userId) {
         return this.changePasswordRepository.findByTransactionIdAndUserIdAndStatus(transactionId, userId, CommonStatus.INIT.name());
     }
+
+
 }

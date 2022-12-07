@@ -5,6 +5,7 @@ public enum CommonStatus {
     SUCCESS,
     USED,
     INIT,
-    ERROR
+    ERROR,
+    REMOVED
 
 }

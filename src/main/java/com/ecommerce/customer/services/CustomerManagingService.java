@@ -53,7 +53,7 @@ public class CustomerManagingService implements CustomerManaging {
                 .orElseThrow(() -> new NoSuchElementException("data Not Found"));
 
         this.chagePasswordDao.findById(customerDetail.getAccount().getUserId()).ifPresent(value -> {
-            this.chagePasswordDao.updateStatus(value.getTransactionId(), value.getUserId(), CommonStatus.USED);
+            this.chagePasswordDao.updateStatus(value.getTransactionId(), value.getUserId(), CommonStatus.REMOVED);
         });
         
         String transactionId = this.chagePasswordDao.save(customerDetail.getAccount().getUserId());

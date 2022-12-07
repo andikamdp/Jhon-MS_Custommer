@@ -13,7 +13,7 @@ public class RegisterCustomerRequest {
     private String identityNumber;
     @NotBlank(message = "{error.empty-field}")
     private String name;
-    @Email(message = "error.mail-format")
+    @Email(message = "{error.mail-format}")
     private String mail;
     @NotNull(message = "{error.empty-field}")
     private Date birthDate;

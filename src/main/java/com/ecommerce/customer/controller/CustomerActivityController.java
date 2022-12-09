@@ -51,8 +51,7 @@ public class CustomerActivityController {
     @GetMapping
     public DetailCustomerResponse detail(HttpServletRequest httpRequest
             , @RequestHeader("user-id") String userid
-            , @RequestHeader("session-id") String sessionId
-            , @RequestBody @Valid RegisterCustomerRequest registerCustomer) {
+            , @RequestHeader("session-id") String sessionId) {
         this.customerActivityService.validateSession(new ValidateSessionRequest(sessionId, Long.parseLong(userid)));
         return this.customerManaging.detailCustomer(userid);
     }
